@@ -458,3 +458,21 @@ a:focus, button:focus { outline: 3px solid rgba(74,163,255,0.12); outline-offset
   .hero-caption { padding: 20px; }
   .slider { height: 44vh; min-height: 180px; }
 }
+
+
+/* ---- Next.js slider adjustments ---- */
+.slide {
+  position: relative;
+  min-height: 60vh;   /* controls hero section height */
+}
+
+.slide-img {
+  object-fit: cover;  /* ensures image fills container without distortion */
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: end;   /* keeps the caption near bottom */
+}

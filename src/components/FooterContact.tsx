@@ -5,7 +5,7 @@ export default function FooterContact() {
       <div className="container">
         <div className="contact-card">
           <h3>Book a shoot or say hi</h3>
-          <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p>Email: <a href="mailto:sabbirislam7088@gmail.com">sabbirislam7088@gmail.com</a></p>
           <p>Instagram: <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></p>
         </div>
 

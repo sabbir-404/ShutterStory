@@ -20,8 +20,8 @@ export default function Nav() {
         <nav id="mainNav" className="main-nav" aria-label="Main navigation">
           <Link className="nav-link" href="/">Home</Link>
           <Link className="nav-link" href="/gallery">Gallery</Link>
-          <a className="nav-link" href="/#about">About</a>
-          <a className="nav-link" href="/#contact">Contact</a>
+          <Link className="nav-link" href="/#about">About</Link>
+          <Link className="nav-link" href="/#contact">Contact</Link>
         </nav>
 
         <div className="nav-controls">

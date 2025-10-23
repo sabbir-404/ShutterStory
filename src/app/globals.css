@@ -476,3 +476,25 @@ a:focus, button:focus { outline: 3px solid rgba(74,163,255,0.12); outline-offset
   display: grid;
   align-items: end;   /* keeps the caption near bottom */
 }
+/* HERO / SLIDER */
+.hero { position: relative; }
+.slider { 
+  position: relative; 
+  height: clamp(340px, 70vh, 880px);  /* ensure a real height */
+  overflow: hidden;
+}
+.slide { 
+  position: absolute; 
+  inset: 0; 
+  opacity: 0; 
+  transition: opacity .6s ease;
+}
+.slide.is-active { opacity: 1; }
+.slide-img { object-fit: cover; }   /* used by next/image fill */
+.hero-overlay { 
+  position: absolute; 
+  inset: 0; 
+  display: grid; 
+  align-items: end; 
+  pointer-events: none;
+}

@@ -19,7 +19,7 @@ export default function HeroSlider({
   const next = () => setI((p) => (p + 1) % slides.length);
 
   useEffect(() => {
-    const id = setInterval(next, 5000);
+    const id = setInterval(() => setI((p) => (p + 1) % slides.length), 5000);
     return () => clearInterval(id);
   }, [slides.length]);
 

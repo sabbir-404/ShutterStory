@@ -5,7 +5,7 @@ export default function AboutSection() {
         <div className="about-text">
           <h2>About Me</h2>
           <p>
-            Hello — I'm <strong>Sabbir Islam Alvi</strong>. I make photographs that tell stories.
+            Hello — I&apos;m <strong>Sabbir Islam Alvi</strong>. I make photographs that tell stories.
             I shoot weddings, travel and commissioned portrait sessions. Based in [Your City].
           </p>
           <p>Available for commissions worldwide — <a href="#contact">get in touch</a>.</p>

@@ -564,3 +564,51 @@ a:focus, button:focus { outline: 3px solid rgba(74,163,255,0.12); outline-offset
   font-size: 0.95rem;
   opacity: .85;
 }
+
+/* Weddings hero (index page) */
+.wedding-hero {
+  position: relative;
+  height: clamp(260px, 42vh, 460px);
+  background: url('/assets/hero1.jpg') center/cover no-repeat; /* replace if you want */
+  display: grid;
+  place-items: end start;
+}
+.wedding-hero .hero-overlay {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.5));
+  padding: 24px 16px;
+}
+.wedding-hero h1 { color: #fff; margin: 0; }
+
+/* Cards grid (index) */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  gap: 20px;
+}
+.event-card { display: grid; grid-template-rows: 1fr auto; border-radius: 12px; overflow: hidden; border:1px solid rgba(255,255,255,.08); text-decoration:none; }
+.event-card-media { position: relative; aspect-ratio: 16/10; }
+.event-card-img { object-fit: cover; }
+.event-info { padding: 12px 14px 16px; display:grid; gap:6px; }
+.event-info h3 { margin:0; }
+
+/* Covered page (hero banner) */
+.hero-banner {
+  position: relative;
+  height: clamp(300px, 48vh, 540px);
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  place-items: end start;
+}
+.hero-banner .overlay {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55));
+  padding: 24px 16px;
+}
+.hero-banner h1, .hero-banner p { color: #fff; margin: 0; }
+
+/* Sections + photo grids */
+.wedding-section { padding: 24px 0; }
+.gallery-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.gallery-img { object-fit: cover; width: 100%; height: auto; }

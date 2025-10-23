@@ -1,45 +1,86 @@
-import Image from 'next/image';
+import { supabase } from "@/lib/supabase";
+import PhotoGrid, { type PhotoItem } from "@/components/PhotoGrid";
 
-type Params = { params: { slug: string } };
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { data: album } = await supabase
+    .from("albums")
+    .select("title")
+    .eq("slug", params.slug)
+    .single();
+  return { title: `${album?.title ?? "Wedding"} — ShutterStory` };
+}
 
-export default async function AlbumPage({ params }: Params) {
+export default async function WeddingAlbumPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  // For now, mock album meta + photos.
-  // Later you'll fetch from Supabase by `slug`.
-  const album = {
-    title: slug.replace('-', ' ').toUpperCase(),
-    // Use any local image you have as the hero background for now:
-    cover_bg_url: '/assets/hero1.jpg',
-  };
+  // 1) album
+  const { data: album } = await supabase
+    .from("albums")
+    .select("id, title, cover_bg_url")
+    .eq("slug", slug)
+    .single();
 
-  // Empty list for now (you’ll fetch from DB later)
-  const photos: { id: string; url: string; alt?: string }[] = [];
+  if (!album) {
+    return (
+      <section className="container" style={{ padding: "24px 0" }}>
+        <h2>Album not found</h2>
+      </section>
+    );
+  }
+
+  // 2) photos, grouped by section
+  const { data: holud } = await supabase
+    .from("photos")
+    .select("id, url, alt, width, height")
+    .eq("album_id", album.id)
+    .eq("section", "holud")
+    .order("created_at", { ascending: true });
+
+  const { data: reception } = await supabase
+    .from("photos")
+    .select("id, url, alt, width, height")
+    .eq("album_id", album.id)
+    .eq("section", "reception")
+    .order("created_at", { ascending: true });
+
+  const map = (arr: any[]): PhotoItem[] =>
+    (arr ?? []).map(p => ({
+      id: p.id,
+      url: p.url,           // <-- Supabase public URL from DB
+      alt: p.alt || album.title,
+      width: p.width || 1200,
+      height: p.height || 800,
+    }));
 
   return (
     <>
-      <section className="hero" style={{ position:'relative', height:'50vh' }}>
-        <Image src={album.cover_bg_url} alt={album.title} fill className="slide-img" priority />
-        <div className="hero-overlay">
-          <div className="hero-caption container">
-            <h1>{album.title}</h1>
-          </div>
+      <section
+        className="hero-banner"
+        style={{ backgroundImage: `url('${album.cover_bg_url || "/assets/hero1.jpg"}')` }}
+      >
+        <div className="overlay">
+          <h1>{album.title}</h1>
+          <p>"Two souls, one journey, a lifetime of love."</p>
         </div>
       </section>
 
-      <section className="container" style={{ padding:'24px 0' }}>
-        {photos.length === 0 ? (
-          <p>Photos will appear here once the database connection is added.</p>
-        ) : (
-          <div className="grid" style={{ gridTemplateColumns:'repeat(auto-fill, minmax(260px,1fr))' }}>
-            {photos.map(p => (
-              <figure key={p.id}>
-                <Image src={p.url} alt={p.alt || ''} width={1200} height={800} sizes="(max-width:768px) 100vw, 33vw" />
-              </figure>
-            ))}
-          </div>
+      <main className="container">
+        {holud && holud.length > 0 && (
+          <section className="wedding-section">
+            <h2>Holud Ceremony</h2>
+            <p className="muted">A night of colors, laughter, and blessings.</p>
+            <PhotoGrid items={map(holud)} />
+          </section>
         )}
-      </section>
+
+        {reception && reception.length > 0 && (
+          <section className="wedding-section">
+            <h2>Bou Bhat (Reception)</h2>
+            <p className="muted">A grand evening to celebrate love with family and friends.</p>
+            <PhotoGrid items={map(reception)} />
+          </section>
+        )}
+      </main>
     </>
   );
 }

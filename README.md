@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShutterStory
 
-## Getting Started
+A simple photography storytelling website — currently under development.
 
-First, run the development server:
+Status: 🚧 Under development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Summary
+- ShutterStory is a photo-first site for publishing and browsing multi-photo stories and albums.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech stack
+- Next.js (App Router)
+- React
+- TypeScript
+- next/image (Next.js Image component)
+- Supabase Storage (public assets) — configured in next.config.mjs
+- CSS (global styles at src/app/globals.css)
+- Node.js toolchain (npm / yarn / pnpm / bun)
+- Recommended deployment: Vercel
+- License: MIT
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Quick start (local)
+1. Clone
+   git clone https://github.com/sabbir-404/ShutterStory.git
+   cd ShutterStory
+2. Install
+   npm install
+3. Dev server
+   npm run dev
+4. Open
+   http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Environment
+- Create a .env from .env.example (if present).
+- Common vars: NEXT_PUBLIC_API_URL, SUPABASE_URL, SUPABASE_ANON_KEY, DATABASE_URL, NODE_ENV.
 
-## Learn More
+Where to look in the repo
+- src/app — Next.js app routes and pages (app/page.tsx)
+- src/components — React components (Nav.tsx, AboutSection.tsx, etc.)
+- src/app/globals.css — global styling
+- next.config.mjs — image remotePatterns configured for Supabase storage
 
-To learn more about Next.js, take a look at the following resources:
+Contributing
+- Fork → branch → PR. Open issues for bugs or feature requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contact
+- Maintainer: sabbir-404 — https://github.com/sabbir-404

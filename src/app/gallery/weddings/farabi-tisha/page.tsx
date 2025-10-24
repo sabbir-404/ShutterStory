@@ -1,23 +1,26 @@
-// SERVER COMPONENT (no "use client" here)
 import FarabiTishaClient from "./FarabiTishaClient";
+import { supabase } from "@/lib/supabase";
 
 export const metadata = { title: "Farabi & Tisha Wedding — ShutterStory" };
 
-export default function FarabiTishaPage() {
+export default async function Page() {
+  const { data: album } = await supabase
+    .from("albums")
+    .select("title, cover_bg_url")
+    .eq("slug", "farabi-tisha")
+    .single();
+
   return (
     <>
-      {/* HERO HEADER */}
       <section
         className="hero-banner"
-        style={{ backgroundImage: "url('/assets/weddings/farabi-tisha/thumbnail.jpg')" }}
+        style={{ backgroundImage: `url('${album?.cover_bg_url || "/assets/hero1.jpg"}')` }}
       >
         <div className="overlay">
-          <h1>Farabi &amp; Tisha</h1>
-          <p>&quot;Two souls, one journey, a lifetime of love.&quot;</p>
+          <h1>{album?.title ?? "Wedding"}</h1>
         </div>
       </section>
 
-      {/* Client-only part goes below */}
       <FarabiTishaClient />
     </>
   );

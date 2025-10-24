@@ -1,12 +1,19 @@
-// src/components/PhotoGrid.tsx
 "use client";
 import Image from "next/image";
-export type PhotoItem = { id: string|number; url: string; alt?: string; width?: number; height?: number };
+
+export type PhotoItem = {
+  id: string | number;
+  url: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+};
 
 export default function PhotoGrid({ items }: { items: PhotoItem[] }) {
+  if (!items || items.length === 0) return <p className="muted">No photos available.</p>;
   return (
     <div className="gallery-grid">
-      {items.map(p => (
+      {items.map((p) => (
         <figure key={p.id}>
           <Image
             src={p.url}
@@ -15,7 +22,7 @@ export default function PhotoGrid({ items }: { items: PhotoItem[] }) {
             height={p.height || 800}
             sizes="(max-width: 768px) 100vw, 33vw"
             className="gallery-img"
-            unoptimized   // ← add this for debugging
+            // If you still suspect domain config, temporarily add: unoptimized
           />
         </figure>
       ))}

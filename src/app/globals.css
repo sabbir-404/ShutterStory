@@ -612,3 +612,114 @@ a:focus, button:focus { outline: 3px solid rgba(74,163,255,0.12); outline-offset
 .wedding-section { padding: 24px 0; }
 .gallery-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .gallery-img { object-fit: cover; width: 100%; height: auto; }
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.event-card { 
+  display: grid; 
+  grid-template-rows: 1fr auto; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  border: 1px solid rgba(255,255,255,.08); 
+  text-decoration: none; 
+}
+.event-card-media {
+  position: relative;
+  aspect-ratio: 16/10;   /* this gives the tile height */
+  overflow: hidden;
+}
+.event-card-img { object-fit: cover; }
+
+.wedding-hero {
+  position: relative;
+  height: clamp(260px, 42vh, 460px);
+  display: grid;
+  place-items: end start;
+  background: #000 center/cover no-repeat;
+}
+.wedding-hero .hero-overlay {
+  width: 100%;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55));
+}
+.wedding-hero h1 { margin: 0; color: #fff; }
+
+/* Section wrapper */
+.wedding-events.container { padding: 24px 16px; }
+.wedding-events h2 { margin: 16px 0 20px; }
+
+/* Grid of cards */
+.event-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+/* Card */
+.event-card {
+  display: grid !important;
+  grid-template-rows: 1fr auto !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: var(--card-bg, #111) !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+
+/* Media box MUST be relative + aspect-ratio so the image has a box */
+.event-card-media {
+  position: relative !important;
+  aspect-ratio: 16 / 10 !important;
+  overflow: hidden !important;
+}
+
+/* next/image fills correctly */
+.event-card-img {
+  object-fit: cover !important;
+}
+
+/* Text area */
+.event-info {
+  padding: 14px 14px 16px !important;
+  display: grid !important;
+  gap: 6px !important;
+}
+.event-info h3 { margin: 0; }
+.event-info p { margin: 0; opacity: .85; }
+
+/* Album/covered page */
+.hero-banner {
+  position: relative;
+  height: clamp(300px, 48vh, 540px);
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  place-items: end start;
+}
+.hero-banner .overlay {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55));
+  padding: 24px 16px;
+}
+.hero-banner h1, .hero-banner p { color: #fff; margin: 0; }
+
+/* Photo grid */
+.wedding-section { padding: 24px 0; }
+.gallery-grid {
+  display: grid !important;
+  gap: 12px !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+}
+.gallery-img { width: 100%; height: auto; object-fit: cover; }
+
+/* Slider “active” class (use this one only) */
+.slide { position:absolute; inset:0; opacity:0; transform:scale(1.02); transition:opacity .8s ease, transform .8s ease; }
+.slide.active { opacity:1; transform:scale(1); }
